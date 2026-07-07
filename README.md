@@ -27,4 +27,4 @@ Meowsloth utilizes a real-time evolution mechanism linked to the ETH 24h volatil
 ## License & Copyright
 Copyright (c) 2026 **CogNeuScist**. All rights reserved. The Meowsloth ($MEOWS) protocol and its dynamic visual logic are the intellectual property of the developer.
 
-**Project Founder:** CogNeuScist. A former researcher at the Department of Experimental Psychology and a member of University College, Oxford. Currently exploring the intersection of digital psychology and blockchain behavioral patterns.
+**Project Founder:** CogNeuScist. A former researcher at the Department of Experimental Psychology and an old member of University College, Oxford. Currently exploring the intersection of digital psychology and blockchain behavioral patterns.
