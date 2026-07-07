@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meowsloth Real-time Evolution</title>
+    <style>
+        body { text-align: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; padding: 50px; color: #333; }
+        h1 { color: #2c3e50; }
+        .volatility-box { font-size: 1.2em; margin-bottom: 20px; }
+        img { width: 400px; max-width: 90%; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease; }
+    </style>
+</head>
+<body>
+    <h1>Meowsloth Real-time Evolution</h1>
+    <div class="volatility-box">
+        <p>Current ETH 24h (1440m) Volatility: <span id="volatility">Calculating...</span>%</p>
+    </div>
+    <img id="meowsloth-img" src="" alt="Meowsloth Status">
+    
+    <script>
+        // IPFS CIDs for English Assets
+        const cids = {
+            en: { 
+                mode0: 'bafkreigav4bdj3eepvs7t5lrgrthiw6jw3hsw7rwwj6citr2dyscb6muhq', 
+                mode1: 'bafkreibdjvh2she5vdk5wjmyocxldgb7czia7mlfjdr3643yrgqsplgrqy', 
+                mode2: 'bafkreigmbvmfaohiqdrtfbgju74yl4d6n6y7na2kxkvyn2fwswbswx7r44' 
+            }
+        };
+        const ipfsGateway = "https://gateway.pinata.cloud/ipfs/";
+
+        async function updateStatus() {
+            try {
+                // Fetch ETH market data from CoinGecko
+                const response = await fetch('https://api.coingecko.com/api/v3/coins/ethereum?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false');
+                const data = await response.json();
+                
+                // Use 24h price change percentage as volatility indicator
+                const volatility = Math.abs(data.market_data.price_change_percentage_24h);
+                document.getElementById('volatility').innerText = volatility.toFixed(2);
+
+                // Evolution Logic: 1440-minute volatility threshold
+                let mode = 'mode1'; 
+                if (volatility <= 2) mode = 'mode0';
+                else if (volatility >= 5) mode = 'mode2';
+
+                // Update DOM
+                document.getElementById('meowsloth-img').src = ipfsGateway + cids.en[mode];
+            } catch (error) {
+                console.error("Data fetch error:", error);
+                document.getElementById('volatility').innerText = "Connection Failed";
+            }
+        }
+        
+        // Update frequency: 5 minutes (300,000 ms)
+        setInterval(updateStatus, 300000); 
+        updateStatus();
+    </script>
+</body>
+</html>
