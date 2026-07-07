@@ -21,7 +21,7 @@ Meowsloth utilizes a real-time evolution mechanism linked to the ETH 24h volatil
 > **M.E.O.W.S.L.O.T.H.** : My Eyes Open Widely and Slowly Towards Heaven.
 
 ## Project Context
-**Launch Date:** 2026-07-08
+**Launch Date:** 2026-07-08.
 **Genesis:** Developed as a cultural bridge between Oxford academic legacy and the hyper-paced crypto market.
 
 ## License & Copyright
